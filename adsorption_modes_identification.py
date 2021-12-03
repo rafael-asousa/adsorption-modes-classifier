@@ -1,5 +1,6 @@
 import os
 import abc
+import sys
 import pandas as pd
 
 from glob               import glob
@@ -168,7 +169,7 @@ class CO2_collector(DataCollector):
 
 if __name__ == '__main__':
 
-    mol_path='/home/rafael/Downloads/Mestrado/supported_molecules/adsorption_modes/CO2/all'
+    mol_path=sys.argv[1]
 
     identifier = AdsorptionModesIdentifier( data_collector   = CO2_collector(path = mol_path),
                                             data_transformer = DataTransformer(),

@@ -1,2 +1,3 @@
 /.QTNano
 /__pycache__
+*.csv
