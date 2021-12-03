@@ -8,12 +8,16 @@ The issue I am willing to talk about on this article appeared when the number of
 
 Then, after studying a lot of Python I saw one way to make my code scalable: Use Object Oriented Programming paradigm so that upon analyzing a new molecule I would only have to write how to obtain the relevant features for it. That saves a lot of time and simplifies the problem, so that even if the code is to be used by another member of the group it would be easily appliable to a different problem.
 
+![screenshot](./img/scheme_clf.png)
+
 The basic structure defined for the code is: 
 
-1. Create a class called AdsorptionModesIdentifier that would contain the pipeline for identifying the adsorption modes, which includes collecting data, transforming data and apllying K-Means Clustering Algorithm.
-2. Define base classes that would as generalistic as possible to each step of the pipeline, those classes are DataCollector, DataTransformer and DataClassifier.
-3. Define problem specific classes, e.g., CO2_collector is a class that collects the data specifically for CO2 molecule.
+1. Create a class called ```AdsorptionModesIdentifier``` that would contain the pipeline for identifying the adsorption modes, which includes collecting data, transforming data and apllying K-Means Clustering Algorithm.
+2. Define base classes that would as generalistic as possible to each step of the pipeline, those classes are ```DataCollector```, ```DataTransformer``` and ```DataClassifier```.
+3. Define problem specific classes, e.g., ```CO2_collector``` is a class that collects the data specifically for CO2 molecule.
 
-Python's class heritage allows me to define general procedures of data collection in the DataCollector class and defining only molecule-specific procedures into CO2_collector, which then allows me to easily create new classes as H2_collector, CO_collector, etc. using few lines of code. The ```@abc.abstractmethod``` decorator helps a lot with this as it allows you to define a fucntion for your class but don't let the class be called unless you define the abstract function in a son class.
+![screenshot](./img/bitmap.png)
+
+Python's class heritage allows me to define general procedures of data collection in the DataCollector class and defining only molecule-specific procedures into ```CO2_collector```, which then allows me to easily create new classes as ```H2_collector```, ```CO_collector```, etc. using few lines of code. The ```@abc.abstractmethod``` decorator helps a lot with this as it allows you to define a fucntion for your class but don't let the class be called unless you define the abstract function in a son class.
 
 Of course, there is a lot of room for improvement on the code, for example one could add another class between CO2_collector and DataCollector to implement reading from different output formats, as I used xyz files but FHI-aims or VASP outputs could be read as well. A class could also be written in order to automatically generate a report of results as representative images of molecules, mean descriptions of each adsorption, etc. But, although the large room for improvements, the code design made it easy to develop and scale the code for further usage.
